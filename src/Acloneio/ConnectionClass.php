@@ -1,5 +1,5 @@
 <?php
-namespace MyApp;
+namespace Acloneio;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 

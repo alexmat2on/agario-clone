@@ -63,13 +63,6 @@ class ComposerStaticInitecdf65f2545b72940c3b889f8a6f614e
     );
 
     public static $prefixesPsr0 = array (
-        'M' => 
-        array (
-            'MyApp' => 
-            array (
-                0 => __DIR__ . '/../..' . '/src',
-            ),
-        ),
         'G' => 
         array (
             'Guzzle\\Stream' => 
@@ -94,6 +87,13 @@ class ComposerStaticInitecdf65f2545b72940c3b889f8a6f614e
             'Evenement' => 
             array (
                 0 => __DIR__ . '/..' . '/evenement/evenement/src',
+            ),
+        ),
+        'A' => 
+        array (
+            'Acloneio' => 
+            array (
+                0 => __DIR__ . '/../..' . '/src',
             ),
         ),
     );

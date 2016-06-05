@@ -1,4 +1,4 @@
-# Agar.io Clone
+# Agar.io Clone (Acloneio)
 
 A recreation of [agar.io](http://agar.io/) by Sami Abood and Alex Matson.
 
