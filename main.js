@@ -1,5 +1,6 @@
 var conn;
 var x,y,otherx,othery;
+var ip_address = "localhost";
 
 window.onload = function() {
 
@@ -9,7 +10,7 @@ window.onload = function() {
 		height = canvas.height = window.innerHeight;
 
 	x = width/2; y = height/2;
-	
+
 	render();
 	function render(){
 		context.clearRect(0,0,width,height);
@@ -18,7 +19,7 @@ window.onload = function() {
 		context.fillStyle = "blue";
 		context.fill();
 		// draw the other player
-		if(otherx!=null && othery!=null){ 
+		if(otherx!=null && othery!=null){
 			context.beginPath();
 			context.arc(otherx,othery,40,0,2*Math.PI);
 			context.fillStyle = "red";
@@ -28,16 +29,16 @@ window.onload = function() {
 		requestAnimationFrame(render);
 	};
 
-	document.body.addEventListener("mousemove", function(event) { // 
+	document.body.addEventListener("mousemove", function(event) { //
 		x = event.clientX;
 		y = event.clientY;
 	});
 
-	conn = new WebSocket('ws://localhost:8080');
+	conn = new WebSocket('ws://' + ip_address + ':8080');
 
 	conn.onopen = function(e) {
 	    console.log("Connection established!");
-	    
+
     	setInterval( function() {
     	 	conn.send(x+","+y);
     	}, 100);  		// send data every 100 ms
@@ -51,5 +52,3 @@ window.onload = function() {
 	};
 
 };
-
-
