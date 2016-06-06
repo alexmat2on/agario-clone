@@ -33,6 +33,7 @@ and open index.html in two different browsers.
 
 ##### Aesthetics and Details
 - [ ] Expand the map's size beyond the screen
+- [ ] Create a light-grey grid background
 - [ ] Create a front-page where players type in a username and click a button to enter the map
 - [ ] Add a leaderboard of points in the top corner
 - [ ] Add "virus cells" -- green spiked elements that will pop a player if they are bigger than the virus and overlap too much
