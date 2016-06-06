@@ -18,4 +18,24 @@ After that is all set up, simply execute `php bin\serverScript.php` in the root 
 and open index.html in two different browsers.
 
 ---
+### To-do List
+
+##### Game-play Mechanics
+- [x] Enable real-time multiplayer connections
+- [ ] Allow multiple players to join instead of 2
+- [ ] Implement the point system
+- [ ] Add randomly generated food dots around the map
+- [ ] Program the player's size to change as they gain points (by eating the dots)
+- [ ] Make the player's speed proportional to their size (larger balls move slower)
+- [ ] Allow the player to eat another player by fully overlapping them
+- [ ] Players can eject a tiny bit of their mass in the direction of their cursor by pressing 'W'
+- [ ] Players can split their size in half by pressing spacebar -- now they control 2 balls that both follow the cursor
+
+##### Aesthetics and Details
+- [ ] Expand the map's size beyond the screen
+- [ ] Create a front-page where players type in a username and click a button to enter the map
+- [ ] Add a leaderboard of points in the top corner
+- [ ] Add "virus cells" -- green spiked elements that will pop a player if they are bigger than the virus and overlap too much
+
+---
 Created in Summer 2016.
