@@ -20,7 +20,7 @@ and open index.html in two different browsers.
 ---
 ### To-do List
 
-##### Game-play Mechanics
+##### Gameplay Mechanics
 - [x] Enable real-time multiplayer connections
 - [ ] Allow multiple players to join instead of 2
 - [ ] Implement the point system
