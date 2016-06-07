@@ -5,6 +5,7 @@
         }
     },
     "require": {
-        "cboden/ratchet": "0.3.*"
+        "cboden/ratchet": "0.3.*",
+        "ext-pthreads": ">=2.0.0"
     }
 }
