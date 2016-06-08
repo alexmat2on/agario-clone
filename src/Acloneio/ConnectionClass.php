@@ -111,22 +111,40 @@ class Player {
 
 }
 
+class BroadcastThread extends Thread{   // using this class as timer to broadcast updates to players.
+    private $players;
+    public function __construct(&$plyrs){
+        $this->players = $plyrs;
+    }
+
+    public function run(){
+            $data = array();
+            foreach ($this->players as $player) 
+                array_push($data, $player->getData());
+            $data_string = implode('-', $data);
+            foreach ($this->players as $player) 
+                $player->send($data_string);
+            usleep(100);
+    }
+}
 
 class ConnectionClass extends Thread implements MessageComponentInterface {
     protected $players;
-    private $timer;
+    private $bcast_thread;
 
     public function __construct() {
         $this->players = new \SplObjectStorage;
-        $timer = EvTimer::createStopped(0,100, broadcast);
+       // $timer = EvTimer::createStopped(0,100, broadcast);
+        $this->bcast_thread = new BroadcastThread($this->players);
+        $this->bcast_thread->start();
         $this->start();
     }
 
     public function onOpen(ConnectionInterface $conn) {
         // Store the new connection to send messages to later
-        $new_player = Player($conn);
+        $new_player = new Player($conn);
         $this->players->attach($new_player);
-
+        $conn->send("pid=".strval($conn->resourceId));  // first thing to send is pid
         echo "New connection! ({$conn->resourceId})\n";
     }
 
@@ -157,17 +175,16 @@ class ConnectionClass extends Thread implements MessageComponentInterface {
         $conn->close();
     }
 
-    private function broadcast() { // send data to clients
+    /*private function broadcast() { // send data to clients
         $data = array();
         foreach ($this->players as $player) 
             array_push($data, $player->getData());
         $data_string = implode('-', $data);
         foreach ($this->players as $player) 
-            $player->send($data_string);
-        
-    }
+            $player->send($data_string); 
+    }*/
 
-    public function run() { // update world, players ...
+    public function run() { // this class's thread: update world, players ...
         foreach ($this->players as $player)
             $player->move();
     }
