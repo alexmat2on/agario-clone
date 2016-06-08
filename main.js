@@ -3,9 +3,11 @@ var x,y,otherx,othery;
 var players = [];
 var ip_address = "localhost"; var port = "8080";
 
-function player_data(xCoord, yCoord) {
-	this.x = xCoord;
-	this.y = yCoord;
+function player_data(player_id, x, y, size) {
+	this.pid = player_id;
+	this.x = xpos;
+	this.y = ypos;
+	this.size = size;
 }
 
 window.onload = function() {
@@ -52,10 +54,32 @@ window.onload = function() {
 	};
 
 	conn.onmessage = function(e) {
+		// Currently, the message received should be a string following the format:
+		// 						"player_id, x-pos, y-pos, size"
+		// Indices: 			0     ,   1  ,   2  ,  3
+		var str = String(e.data);
+		var res = str.split(',');  // Create an array from "str" of values which were separated by a comma in "str"
+		var p_exists = false;
+
+		for (i = 0; i < players.length; i++) { // Find if a player already exists in the array, and update values
+			if (players[i].pid == res[0]) {
+				p_exists = true;
+				players[i].x = parseInt(res[1]);
+				players[i].y = parseInt(res[2]);
+				players[i].size = parseInt(res[3]);
+			}
+		}
+
+		if (!p_exists) {
+			players.push(new player_data (parseInt (res[0]), parseInt (res[1]), parseInt (res[2]), parseInt (res[3])));
+		}
+
+		/* old, 2-player way -------------------------------------------------------
 		var str = String(e.data);
 		var commaIndex = str.indexOf(',');
 		otherx = parseInt(str.substr(0,commaIndex));
 		othery = parseInt(str.substr(commaIndex+1,str.length-1));
+		--------------------------------------------------------------------------*/
 	};
 
 };
